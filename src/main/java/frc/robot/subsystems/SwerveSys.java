@@ -83,7 +83,7 @@ public class SwerveSys extends SubsystemBase {
         return isFieldOriented;
     }
 
-    private double speedFactor = 1.0;
+    private double speedFactor = 0.5;
     public double getSpeedFactor() {
         return speedFactor;
     }

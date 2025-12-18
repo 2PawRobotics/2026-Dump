@@ -42,6 +42,7 @@ import frc.robot.subsystems.EndEffectorSys;
 import frc.robot.subsystems.IntakeSys;
 import frc.robot.subsystems.LiftSys;
 import frc.robot.subsystems.SwerveSys;
+import frc.robot.commands.drivetrain.PointCmd;
 
 public class RobotContainer {
     
@@ -72,6 +73,7 @@ public class RobotContainer {
     private final LintakeoutrunCmd lintakeoutrunCmd;
     private final AlgeaoutrunCmd algeaoutrunCmd;
     private final AlgeaoutrunbwdCmd algeaoutrunbwdCmd;
+    private final PointCmd pointCmd;
 
     //Initialize auto selector.
     SendableChooser<Command> autoSelector = new SendableChooser<Command>();
@@ -104,6 +106,7 @@ public class RobotContainer {
         lintakeoutrunCmd = new LintakeoutrunCmd(intakeSys);
         algeaoutrunCmd = new AlgeaoutrunCmd(intakeSys);
         algeaoutrunbwdCmd = new AlgeaoutrunbwdCmd(intakeSys);
+        pointCmd = new PointCmd(swerveSys);
 
         //Add Requirements
         lvl0Cmd.addRequirements(liftSys);
@@ -119,6 +122,7 @@ public class RobotContainer {
         rintakeoutrunCmd.addRequirements(intakeSys);
         algeaoutrunCmd.addRequirements(intakeSys);
         algeaoutrunbwdCmd.addRequirements(intakeSys);
+        //pointCmd.addRequirements(swerveSys);
             
         //Register Commands to PathPlanner
         NamedCommands.registerCommand("lvl4", new Lvl4Cmd(liftSys));
@@ -178,6 +182,7 @@ public class RobotContainer {
         driverController.b().whileTrue(new TurnToHeadingCmd(Rotation2d.fromDegrees(120), swerveSys));
         driverController.x().whileTrue(new TurnToHeadingCmd(Rotation2d.fromDegrees(90), swerveSys));
 
+        driverController.rightBumper().whileTrue(new PointCmd(swerveSys));
     }
 
     public Command getAutonomousCommand() {
