@@ -5,7 +5,7 @@ import frc.robot.subsystems.SwerveSys;
 import frc.robot.util.limelight.LimelightHelpers;
 
 public class PointCmd extends Command{
-    private final SwerveSys swerveSys;
+    public final SwerveSys swerveSys;
     private final double kP = 0.1; // Proportional constant for centering
     private final double tolerance = 0.01; // Degress of error tolerance
 
